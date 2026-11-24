@@ -1,0 +1,450 @@
+/* ===== 학생 활동 페이지 ===== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 6px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.user-info .user-photo {
+  width: 32px;
+  height: 32px;
+}
+
+.user-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.user-email {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.auth-checking {
+  text-align: center;
+  color: var(--text-muted);
+  margin: 48px 0;
+}
+
+.student-page {
+  max-width: 960px;
+}
+
+/* ----- 진행 단계 ----- */
+.progress {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.progress-step {
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.progress-step.is-active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.progress-step.is-done {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ----- 단계 카드 ----- */
+.stage {
+  padding: 32px;
+}
+
+.stage-emoji {
+  display: block;
+  text-align: center;
+  font-size: 2.6rem;
+}
+
+.stage .section-title {
+  margin: 8px 0 8px;
+}
+
+.stage-text {
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+.hint-text {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+#key-section .hint-text {
+  text-align: center;
+  margin-top: 12px;
+}
+
+.status-text {
+  min-height: 1.6em;
+  margin: 12px 0 0;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.status-text.is-error {
+  color: #c4472f;
+}
+
+/* ----- 입력 ----- */
+.text-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: border-color 0.15s ease;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: #fff;
+}
+
+.text-input:disabled {
+  opacity: 0.6;
+}
+
+.key-form {
+  display: flex;
+  gap: 12px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ----- 채팅 ----- */
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.chat-title {
+  font-size: 1.5rem;
+}
+
+.turn-counter {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--primary-dark);
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+}
+
+.chat-log {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 420px;
+  overflow-y: auto;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.bubble {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.bubble-assistant {
+  align-self: flex-start;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 6px;
+}
+
+.bubble-user {
+  align-self: flex-end;
+  background: var(--primary);
+  color: #fff;
+  border-bottom-right-radius: 6px;
+}
+
+.bubble-error {
+  align-self: center;
+  max-width: 100%;
+  background: #fde8e2;
+  color: #a63b25;
+  font-size: 0.9rem;
+}
+
+.bubble.is-typing {
+  color: var(--text-muted);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.chat-form {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.chat-input {
+  resize: none;
+}
+
+.chat-footer,
+.draw-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.chat-footer .hint-text,
+.draw-footer .status-text {
+  margin: 0;
+  text-align: left;
+}
+
+/* ----- 그림 그리기 ----- */
+.stage-draw > .hint-text {
+  margin-bottom: 20px;
+}
+
+.draw-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.tool-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tool-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.tool-label output {
+  color: var(--primary-dark);
+}
+
+.palette {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+
+.swatch {
+  aspect-ratio: 1;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--border);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.1s ease;
+}
+
+.swatch:hover {
+  transform: scale(1.1);
+}
+
+.swatch[aria-checked='true'] {
+  box-shadow: 0 0 0 3px var(--primary);
+}
+
+.color-preview {
+  width: 36px;
+  height: 22px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.range {
+  width: 100%;
+  accent-color: var(--primary);
+}
+
+.tool-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.tool-btn {
+  padding: 8px 6px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.tool-btn:hover:not(:disabled) {
+  background: var(--bg-soft);
+}
+
+.tool-btn.is-active {
+  background: var(--secondary);
+  border-color: var(--secondary-dark);
+}
+
+.tool-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.canvas-wrap {
+  position: relative;
+  aspect-ratio: 10 / 7;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid var(--border);
+  background: #fff;
+}
+
+.draw-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.draw-preview {
+  cursor: crosshair;
+  touch-action: none;
+}
+
+/* ----- 작은 화면 ----- */
+@media (max-width: 760px) {
+  .stage {
+    padding: 20px 16px;
+  }
+
+  .draw-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .canvas-wrap {
+    order: -1;
+  }
+
+  .palette {
+    grid-template-columns: repeat(11, 1fr);
+  }
+
+  .chat-log {
+    height: 360px;
+  }
+
+  .tool-buttons {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .key-form,
+  .chat-footer,
+  .draw-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .palette {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .tool-buttons {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .bubble {
+    max-width: 90%;
+  }
+}

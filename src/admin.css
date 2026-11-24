@@ -1,0 +1,328 @@
+/* ===== 교사 모니터링 페이지 ===== */
+
+.admin-header {
+  max-width: none;
+}
+
+.brand-sub {
+  margin-left: 4px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* 좌측 사이드바 | 가운데 대화 | 오른쪽 그림 */
+.admin-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+  width: 100%;
+  padding: 0 24px 24px;
+  height: calc(100vh - 80px);
+  min-height: 560px;
+}
+
+.muted-small {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.empty-text {
+  margin: 8px 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.link-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--primary-dark);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.count-badge {
+  display: inline-block;
+  min-width: 24px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--primary-dark);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* ----- 사이드바 ----- */
+.admin-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 18px;
+  overflow: hidden;
+}
+
+.admin-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.admin-user-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+}
+
+.sidebar-grow {
+  flex: 1;
+}
+
+.sidebar-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.15rem;
+}
+
+.sidebar-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.date-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.date-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.date-item:hover {
+  background: var(--bg);
+}
+
+.date-item input {
+  accent-color: var(--primary);
+  width: 16px;
+  height: 16px;
+}
+
+.date-text {
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+.submission-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  min-height: 0;
+  flex: 1;
+}
+
+.submission-item {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.submission-item.is-selected {
+  border-color: var(--primary);
+  background: #fff1e8;
+}
+
+.submission-open {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 6px;
+  padding: 10px 12px;
+  border: none;
+  background: none;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.submission-open:hover {
+  background: var(--bg-soft);
+}
+
+.submission-name {
+  font-weight: 700;
+}
+
+.submission-time {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.delete-btn {
+  flex-shrink: 0;
+  padding: 0 12px;
+  border: none;
+  border-left: 1px solid var(--border);
+  background: none;
+  color: #c4472f;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.delete-btn:hover:not(:disabled) {
+  background: #fde8e2;
+}
+
+.delete-btn:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.admin-sidebar .status-text {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+/* ----- 가운데·오른쪽 패널 ----- */
+.admin-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  min-height: 0;
+}
+
+.panel-title {
+  font-size: 1.25rem;
+}
+
+.detail-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--bg-soft);
+}
+
+.detail-stats {
+  font-size: 0.85rem;
+  color: var(--primary-dark);
+}
+
+.admin-chat {
+  flex: 1;
+  height: auto;
+  min-height: 0;
+}
+
+.drawing-view {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.drawing-image {
+  max-width: 100%;
+  max-height: calc(100% - 32px);
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+/* ----- 작은 화면: 세로로 쌓기 ----- */
+@media (max-width: 1100px) {
+  .admin-layout {
+    grid-template-columns: 280px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    height: auto;
+  }
+
+  .admin-sidebar {
+    grid-row: span 2;
+    max-height: calc(100vh - 100px);
+    position: sticky;
+    top: 16px;
+  }
+
+  .admin-chat {
+    height: 420px;
+    flex: none;
+  }
+
+  .drawing-view {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 720px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+    padding: 0 16px 24px;
+  }
+
+  .admin-sidebar {
+    grid-row: auto;
+    position: static;
+    max-height: none;
+  }
+
+  .submission-list {
+    max-height: 320px;
+  }
+}

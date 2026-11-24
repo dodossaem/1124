@@ -1,0 +1,371 @@
+@import '@fontsource/gowun-dodum';
+@import '@fontsource/jua';
+
+/* ===== 색상·공통 값 ===== */
+:root {
+  --bg: #fff8ef;
+  --bg-soft: #fdeedd;
+  --surface: #ffffff;
+  --text: #4a3426;
+  --text-muted: #8a6f5c;
+  --primary: #e8825a;
+  --primary-dark: #d56c43;
+  --secondary: #f6c76b;
+  --secondary-dark: #e9b24e;
+  --accent: #9cbf8f;
+  --border: #f1dcc6;
+  --shadow: 0 8px 24px rgba(196, 128, 82, 0.15);
+  --radius: 20px;
+
+  --font-body: 'Gowun Dodum', system-ui, sans-serif;
+  --font-title: 'Jua', 'Gowun Dodum', system-ui, sans-serif;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body);
+  color: var(--text);
+  line-height: 1.6;
+  background:
+    radial-gradient(circle at 10% 0%, #ffe3c7 0, transparent 40%),
+    radial-gradient(circle at 90% 20%, #fff1c9 0, transparent 35%),
+    var(--bg);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-title);
+  font-weight: 400;
+  margin: 0;
+}
+
+/* ===== 헤더·푸터 ===== */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.brand-mark {
+  font-size: 1.6rem;
+}
+
+.brand-name {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  color: var(--primary-dark);
+}
+
+.site-footer {
+  text-align: center;
+  padding: 24px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* ===== 레이아웃 ===== */
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 16px 24px 48px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.section-title {
+  font-size: 1.7rem;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* ===== 버튼 ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 999px;
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--secondary);
+  outline-offset: 3px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(232, 130, 90, 0.35);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: var(--text);
+  box-shadow: 0 6px 16px rgba(246, 199, 107, 0.4);
+}
+
+.btn-secondary:hover {
+  background: var(--secondary-dark);
+}
+
+.btn-ghost {
+  padding: 8px 16px;
+  font-size: 1rem;
+  background: var(--bg-soft);
+  color: var(--text);
+}
+
+.btn-icon {
+  font-size: 1.3rem;
+}
+
+/* ===== 메인 페이지: 히어로 ===== */
+.hero {
+  text-align: center;
+  padding: 48px 0 56px;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  margin: 0 0 16px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--primary-dark);
+  font-size: 0.95rem;
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  line-height: 1.25;
+  margin-bottom: 20px;
+}
+
+.hero-text {
+  margin: 0 auto 36px;
+  max-width: 520px;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+.role-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.hero-note {
+  margin: 20px 0 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ===== 메인 페이지: 로그인 ===== */
+.login-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-google {
+  background: #fff;
+  color: var(--text);
+  border: 2px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.btn-google:hover {
+  background: var(--bg-soft);
+}
+
+.btn-google:disabled {
+  opacity: 0.6;
+  cursor: wait;
+  transform: none;
+}
+
+.google-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.login-status {
+  min-height: 1.5em;
+  margin: 8px 0 0;
+  color: #c4472f;
+  font-size: 0.95rem;
+}
+
+.user-area {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 8px 8px 8px 12px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.user-photo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+/* ===== 메인 페이지: 진행 단계 ===== */
+.step-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.step {
+  position: relative;
+  padding: 32px 24px 24px;
+  text-align: center;
+}
+
+.step-num {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-title);
+}
+
+.step-emoji {
+  display: block;
+  font-size: 2.4rem;
+  margin-bottom: 8px;
+}
+
+.step h3 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.step p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* ===== 준비 중 페이지 ===== */
+.placeholder {
+  max-width: 560px;
+  margin: 48px auto 0;
+  padding: 48px 32px;
+  text-align: center;
+}
+
+.placeholder-emoji {
+  font-size: 3rem;
+}
+
+.placeholder .section-title {
+  margin: 12px 0;
+}
+
+.placeholder p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* ===== 작은 화면 ===== */
+@media (max-width: 480px) {
+  .site-header {
+    padding: 14px 16px;
+  }
+
+  .page {
+    padding: 8px 16px 40px;
+  }
+
+  .hero {
+    padding: 32px 0 40px;
+  }
+
+  .hero-text br {
+    display: none;
+  }
+
+  .role-buttons .btn {
+    width: 100%;
+  }
+}
+
+/* ===== 권한 확인 중 표시 ===== */
+.page-checking {
+  display: block;
+  text-align: center;
+  margin: 48px 0;
+}

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>마음온도 · 학생 활동</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true">☀️</span>
+        <span class="brand-name">마음온도</span>
+      </a>
+      <div class="header-right">
+        <div id="user-info" class="user-info" hidden>
+          <img id="user-photo" class="user-photo" alt="" referrerpolicy="no-referrer" hidden />
+          <div class="user-text">
+            <strong id="user-name"></strong>
+            <span id="user-email" class="user-email"></span>
+          </div>
+        </div>
+        <a class="btn btn-ghost" href="/">← 처음으로</a>
+      </div>
+    </header>
+
+    <p id="auth-checking" class="auth-checking">로그인 상태를 확인하는 중…</p>
+
+    <main id="student-main" class="page student-page" hidden>
+      <!-- 진행 단계 표시 -->
+      <ol class="progress" aria-label="진행 단계">
+        <li class="progress-step is-active" data-step="key">🔑 시작하기</li>
+        <li class="progress-step" data-step="chat">💬 이야기 나누기</li>
+        <li class="progress-step" data-step="draw">🎨 마음 그리기</li>
+      </ol>
+
+      <!-- 1단계: OpenAI API Key 입력 -->
+      <section id="key-section" class="card stage">
+        <span class="stage-emoji" aria-hidden="true">🔑</span>
+        <h1 class="section-title">시작하기 전에</h1>
+        <p class="stage-text">OpenAI API Key를 입력하면 챗봇과 이야기를 시작할 수 있어요.</p>
+
+        <form id="key-form" class="key-form" autocomplete="off">
+          <label class="sr-only" for="key-input">OpenAI API Key</label>
+          <input
+            id="key-input"
+            class="text-input"
+            type="password"
+            placeholder="sk-..."
+            spellcheck="false"
+            required
+          />
+          <button id="key-submit" class="btn btn-primary" type="submit">확인하기</button>
+        </form>
+        <p id="key-status" class="status-text" role="status" aria-live="polite"></p>
+        <p class="hint-text">입력한 키는 이 페이지에서만 사용되고 어디에도 저장되지 않아요.</p>
+      </section>
+
+      <!-- 2단계: 챗봇 대화 -->
+      <section id="chat-section" class="card stage stage-chat" hidden>
+        <div class="chat-header">
+          <div>
+            <h2 class="chat-title">오늘 학교 공부는 어땠어?</h2>
+            <p class="hint-text">3번 이상 이야기를 나누면 대화를 마칠 수 있어요. (최대 7번)</p>
+          </div>
+          <span id="turn-counter" class="turn-counter">0 / 7</span>
+        </div>
+
+        <div id="chat-log" class="chat-log" aria-live="polite"></div>
+
+        <form id="chat-form" class="chat-form" autocomplete="off">
+          <label class="sr-only" for="chat-input">메시지 입력</label>
+          <textarea
+            id="chat-input"
+            class="text-input chat-input"
+            rows="2"
+            placeholder="오늘 있었던 일을 편하게 이야기해 줘"
+            required
+          ></textarea>
+          <button id="chat-send" class="btn btn-primary" type="submit">보내기</button>
+        </form>
+
+        <div class="chat-footer">
+          <p id="chat-notice" class="hint-text"></p>
+          <button id="chat-end" class="btn btn-secondary" type="button" disabled>
+            Chatbot과의 대화 끝내기
+          </button>
+        </div>
+      </section>
+
+      <!-- 3단계: 그림 그리기 -->
+      <section id="draw-section" class="card stage stage-draw" hidden>
+        <h2 class="chat-title">오늘 하루를 그림으로 표현해 볼까?</h2>
+        <p class="hint-text">색과 붓을 골라 오늘의 마음을 자유롭게 그려 보세요.</p>
+
+        <div class="draw-layout">
+          <div class="toolbar" aria-label="그리기 도구">
+            <div class="tool-group">
+              <span class="tool-label">색상</span>
+              <div id="palette" class="palette" role="radiogroup" aria-label="색상"></div>
+            </div>
+
+            <div class="tool-group">
+              <span class="tool-label">
+                지금 색
+                <span id="color-preview" class="color-preview" aria-hidden="true"></span>
+              </span>
+            </div>
+
+            <div class="tool-group">
+              <label class="tool-label" for="brightness">명도 <output id="brightness-value">0</output></label>
+              <input id="brightness" class="range" type="range" min="-40" max="40" value="0" />
+            </div>
+
+            <div class="tool-group">
+              <label class="tool-label" for="opacity">불투명도 <output id="opacity-value">100%</output></label>
+              <input id="opacity" class="range" type="range" min="10" max="100" value="100" />
+            </div>
+
+            <div class="tool-group">
+              <label class="tool-label" for="brush-size">브러쉬 크기 <output id="brush-size-value">8</output></label>
+              <input id="brush-size" class="range" type="range" min="1" max="60" value="8" />
+            </div>
+
+            <div class="tool-group tool-buttons">
+              <button id="tool-pen" class="tool-btn is-active" type="button" aria-pressed="true">✏️ 펜</button>
+              <button id="tool-eraser" class="tool-btn" type="button" aria-pressed="false">🧽 지우개</button>
+              <button id="tool-undo" class="tool-btn" type="button">↩️ 되돌리기</button>
+              <button id="tool-clear" class="tool-btn" type="button">🗑️ 전체 지우기</button>
+            </div>
+          </div>
+
+          <div class="canvas-wrap">
+            <canvas id="draw-canvas" class="draw-canvas"></canvas>
+            <canvas id="draw-preview" class="draw-canvas draw-preview" aria-hidden="true"></canvas>
+          </div>
+        </div>
+
+        <div class="draw-footer">
+          <p id="submit-status" class="status-text" role="status" aria-live="polite"></p>
+          <button id="draw-submit" class="btn btn-primary" type="button">💌 제출하기</button>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
